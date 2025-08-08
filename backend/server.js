@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
+import hotelRouter from "./routes/hotelRoute.js"
 
 
 const app = express();
@@ -14,6 +15,8 @@ connectCloudinary()
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/hotel", hotelRouter)
 
 app.get("/", (req, res) => {
     res.send("API Working")
