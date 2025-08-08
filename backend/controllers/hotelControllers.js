@@ -54,7 +54,14 @@ const removeHotel = async (req, res) => {
 }
 
 const singleHotel = async (req, res) => {
-    res.json({success: true, message: "Single workingg"})
+    try {
+        const hotel = await hotelModel.findById(req.params.id)
+        if (!hotel) return res.json({ message: "Room not found" });
+        res.json({hotel})
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "ERROR!!! What da ?!"})
+    }
 }
 
 export {addHotel, listHotel, removeHotel, singleHotel}
