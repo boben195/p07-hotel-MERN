@@ -34,11 +34,23 @@ const addHotel = async (req, res) => {
 }
 
 const listHotel = async (req, res) => {
-     res.json({success: true, message: "List workingg"})
+     try {
+         const hotels = await hotelModel.find({})
+         res.json({success: true, hotels})
+     } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "ERROR!!! What da ?!"})
+     }
 }
 
 const removeHotel = async (req, res) => {
-    res.json({success: true, message: "Remove workingg"})
+    try {
+        await hotelModel.findByIdAndDelete(req.body._id)
+        res.json({success:true, message: "Hotel Room removed successfully!"})
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "ERROR!!! What da ?!"})
+    }
 }
 
 const singleHotel = async (req, res) => {
