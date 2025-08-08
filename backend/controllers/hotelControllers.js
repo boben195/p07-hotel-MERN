@@ -9,15 +9,15 @@ const addHotel = async (req, res) => {
 }
 
 const listHotel = async (req, res) => {
-    
+     res.json({success: true, message: "List workingg"})
 }
 
 const removeHotel = async (req, res) => {
-    
+    res.json({success: true, message: "Remove workingg"})
 }
 
 const singleHotel = async (req, res) => {
-    
+    res.json({success: true, message: "Single workingg"})
 }
 
 export {addHotel, listHotel, removeHotel, singleHotel}
