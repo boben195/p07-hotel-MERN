@@ -29,7 +29,7 @@ const App = () => {
             <div className="w-[70%] ml-[max(5vw,25px)] my-8 text-black text-base">
               <Routes>
                 <Route path="/add" element={<AddHotel token={token} />} />
-                <Route path="/list" element={<ListHotel />} />
+                <Route path="/list" element={<ListHotel />} token={token} />
                 <Route path="/reservation" element={<Reservation />} />
               </Routes>
             </div>
