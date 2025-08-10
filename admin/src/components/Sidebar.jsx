@@ -5,27 +5,39 @@ import { MdChecklistRtl, MdFormatListBulletedAdd } from "react-icons/md";
 
 const Sidebar = ({ setToken }) => {
   return (
-    <div>
-      <div>
-        <h2>Delux Hotel</h2>
+    <div className="w-[22%] min-h-screen border-r-2 border-gray-100 bg-white">
+      <div className="mt-4 px-6">
+        <h2 className="text-[32px] font-bold">Delux Hotel</h2>
       </div>
-      <div>
-        <NavLink to="/add">
-          <IoMdAddCircleOutline />
-          <p>Add rooms</p>
+      <div className="flex flex-col gap-4 pt-6">
+        <NavLink
+          to="/add"
+          className="flex items-center gap-3 px-4 py-3 border-b-2 border-gray-200 text-gray-600 hover:bg-fuchsia-500 hover:text-white"
+        >
+          <IoMdAddCircleOutline className="text-[35px] text-black" />
+          <p className="hidden md:block text-base">Add rooms</p>
         </NavLink>
-        <NavLink to="/list">
-          <MdFormatListBulletedAdd />
-          <p>Rooms List</p>
+        <NavLink
+          to="/list"
+          className="flex items-center gap-3 px-4 py-3 border-b-2 border-gray-200 text-gray-600 hover:bg-fuchsia-500 hover:text-white"
+        >
+          <MdFormatListBulletedAdd className="text-[35px] text-black" />
+          <p className="hidden md:block text-base">Rooms List</p>
         </NavLink>
-        <NavLink to="/reservation">
-          <MdChecklistRtl />
-          <p>Reservations</p>
+        <NavLink
+          to="/reservation"
+          className="flex items-center gap-3 px-4 py-3 border-b-2 border-gray-200 text-gray-600 hover:bg-fuchsia-500 hover:text-white"
+        >
+          <MdChecklistRtl className="text-[35px] text-black" />
+          <p className="hidden md:block text-base">Reservations</p>
         </NavLink>
 
-        <button>
-          <IoIosLogOut />
-          <p>LogOut</p>
+        <button
+          onClick={() => setToken("")}
+          className="flex items-center gap-3 px-6 py-3 border-b-2 border-gray-200 text-gray-600 hover:bg-fuchsia-500 w-full text-left"
+        >
+          <IoIosLogOut className="text-[35px] text-black" />
+          <p className="hidden md:block text-base">LogOut</p>
         </button>
       </div>
     </div>
