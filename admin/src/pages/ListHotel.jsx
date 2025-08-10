@@ -27,20 +27,27 @@ const ListHotel = ({ token }) => {
   }, []);
   return (
     <div>
-      <p>Hotel Room List</p>
-      <div>
-        <div>
+      <p className="mb-2 font-bold text-2xl">Hotel Room List</p>
+      <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-[1fr_3fr_1fr_1fr] items-center p-2 border-b-2 border-gray-300 text-lg font-semibold">
           <b>Image</b>
           <b>Room Name</b>
           <b>Price</b>
-          <b>Delete</b>
+          <b className="text-center">Delete</b>
         </div>
         {list.map((item, index) => (
-          <div key={index}>
-            <img src={item.image} alt="room image" />
+          <div
+            key={index}
+            className="grid grid-cols-[1fr_3fr_1fr_1fr] items-center p-2 border-b-2 border-gray-300 text-lg"
+          >
+            <img
+              src={item.image}
+              alt="room image"
+              className="w-[50px] h-auto"
+            />
             <p>{item.name}</p>
             <p>{item.price}</p>
-            <MdDeleteForever />
+            <MdDeleteForever className="ml-10 text-[28px] cursor-pointer text-red-600" />
           </div>
         ))}
       </div>
