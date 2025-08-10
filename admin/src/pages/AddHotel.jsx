@@ -10,7 +10,7 @@ const AddHotel = () => {
 
   return (
     <div>
-      <form>
+      <form className="flex flex-col items-start gap-1">
         <div>
           <p>Upload Image</p>
           <div>
@@ -18,6 +18,7 @@ const AddHotel = () => {
               <img
                 src={!image ? default_image : URL.createObjectURL(image)}
                 alt="your image"
+                className="w-32 cursor-pointer"
               />
               <input
                 type="file"
@@ -28,34 +29,42 @@ const AddHotel = () => {
             </label>
           </div>
         </div>
-        <div>
-          <p>Room Name</p>
+        <div className="w-full">
+          <p className="mb-2 text-[22px]">Room Name</p>
           <input
             type="text"
             placeholder="Enter room name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="w-full max-w-[500px] p-4 border border-gray-300 rounded"
           />
         </div>
-        <div>
-          <p>Room Description</p>
+        <div className="w-full">
+          <p className="mb-2 text-[22px]">Room Description</p>
           <input
             type="text"
             placeholder="Enter enter description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="w-full max-w-[500px] p-4 border border-gray-300 rounded"
           />
         </div>
-        <div>
-          <p>Room Price</p>
+        <div className="w-full">
+          <p className="mb-2 text-[22px]">Room Price</p>
           <input
             type="number"
             placeholder="40"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            className="w-full max-w-[500px] p-4 border border-gray-300 rounded"
           />
         </div>
-        <button type="submit">Add room</button>
+        <button
+          type="submit"
+          className="mt-6 px-20 py-3 bg-fuchsia-600 rounded text-white"
+        >
+          Add room
+        </button>
       </form>
     </div>
   );
