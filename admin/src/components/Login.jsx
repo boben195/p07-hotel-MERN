@@ -1,9 +1,32 @@
 import React, { useState } from "react";
-import { backendUrl } from "../App";
+import axios from "axios";
 
-const Login = () => {
+import { backendUrl } from "../App";
+import { toast } from "react-toastify";
+
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const adminLoginHandler = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post(backendUrl + "/api/user/admin", {
+        email,
+        password,
+      });
+      console.log(response);
+
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+      } else {
+        toast.error;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -12,7 +35,7 @@ const Login = () => {
           <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">
             Admin Login
           </h1>
-          <form>
+          <form onSubmit={adminLoginHandler}>
             <div className="mb-4">
               <p className="text-sm font-semibold text-gray-600 mb-2">
                 Email Address

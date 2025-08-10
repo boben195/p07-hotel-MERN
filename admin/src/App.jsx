@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Login from "./components/Login";
@@ -10,15 +10,20 @@ import Reservation from "./pages/Reservation";
 export const backendUrl = "http://localhost:4000";
 
 const App = () => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    localStorage.setItem("token", token);
+  }, [token]);
+
   return (
     <div>
       {!token ? (
-        <Login />
+        <Login setToken={setToken} />
       ) : (
         <>
           <div>
-            <Sidebar />
+            <Sidebar setToken={setToken} />
             <div>
               <Routes>
                 <Route path="/add" element={<AddHotel />} />
