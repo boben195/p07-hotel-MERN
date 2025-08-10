@@ -1,20 +1,55 @@
 import React, { useState } from "react";
 
 import default_image from "../assets/upload.jpg";
+import axios from "axios";
+import { backendUrl } from "../App";
 
-const AddHotel = () => {
+const AddHotel = ({ token }) => {
   const [image, setImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
+  const roomSubmition = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+      if (image) formData.append("image", image);
+
+      const response = await axios.post(
+        `${backendUrl}/api/hotel/add`,
+        formData,
+        { headers: { token } }
+      );
+
+      console.log(response.data);
+
+      if (response.data.success) {
+        console.log(response.data.message);
+        setName("");
+        setDescription("");
+        setPrice("");
+        setImage(null);
+      } else {
+        console.log("Something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
-      <form className="flex flex-col items-start gap-1">
+      <form
+        onSubmit={roomSubmition}
+        className="flex flex-col items-start gap-1"
+      >
         <div>
           <p>Upload Image</p>
           <div>
-            <label htmlFor="">
+            <label htmlFor="image">
               <img
                 src={!image ? default_image : URL.createObjectURL(image)}
                 alt="your image"

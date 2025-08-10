@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Login from "./components/Login";
 import Sidebar from "./components/Sidebar";
@@ -18,6 +19,7 @@ const App = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <ToastContainer />
       {!token ? (
         <Login setToken={setToken} />
       ) : (
@@ -26,7 +28,7 @@ const App = () => {
             <Sidebar setToken={setToken} />
             <div className="w-[70%] ml-[max(5vw,25px)] my-8 text-black text-base">
               <Routes>
-                <Route path="/add" element={<AddHotel />} />
+                <Route path="/add" element={<AddHotel token={token} />} />
                 <Route path="/list" element={<ListHotel />} />
                 <Route path="/reservation" element={<Reservation />} />
               </Routes>
